@@ -1,4 +1,38 @@
-﻿init python:
+﻿# The script of the game goes in this file.
+init python:
+    renpy.music.register_channel("music1", "bgm", loop=True)
+    renpy.music.register_channel("sound1", "sfx", loop=False)
+    renpy.music.register_channel("sound2", "sfx", loop=False)
+    renpy.music.register_channel("sound3", "sfx", loop=False)
+    renpy.music.register_channel("sound4", "sfx", loop=False)
+    import random
+
+transform random_shake(xpos=-0.15, ypos=0.40):
+    block:
+        xpos xpos ypos ypos
+        linear 0.05 xpos (xpos - 0.003) ypos (ypos - 0.003)
+        linear 0.05 xpos (xpos + 0.003) ypos (ypos + 0.003)
+        linear 0.05 xpos (xpos - 0.0015) ypos (ypos - 0.0015)
+        linear 0.05 xpos (xpos + 0.0015) ypos (ypos + 0.0015)
+        linear 0.05 xpos xpos ypos ypos
+        repeat
+
+define circleirisin = ImageDissolve("imagedissolve circleiris.png", 1.0,8,reverse=True)
+define circleirisout = ImageDissolve("imagedissolve circleiris.png", 1.0,8)
+
+
+# Declare characters used by this game. The color argument colorizes the
+# name of the character.
+
+define e = Character(None, show_altpos=True)
+define n = Character("Cheryelle", color="#ffffff")
+
+image white = Solid("#ffffff")
+
+
+
+
+init python:
     # ~Class that represents an item in the inventory, nya~
     class Item(object):
         def __init__(self, name, description, img, category="general"):
@@ -322,6 +356,9 @@ screen Screen_CategoryMenu:
 
 # ~Start label, adding some items to the inventory to play with, yay~
 label start:
+
+    call prologue
+
     # ~Add a Manga item to the inventory, because reading is fun, nya!~
     $ Inventory.add_item(Item('Manga', 'Being well-read can be so easy.', 'images/Items/item_manga.png'), 5)
     

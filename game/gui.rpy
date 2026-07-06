@@ -72,7 +72,7 @@ define gui.text_size = 33
 define gui.name_text_size = 45
 
 ## The size of text in the game's user interface.
-define gui.interface_text_size = 33
+define gui.interface_text_size = 45
 
 ## The size of labels in the game's user interface.
 define gui.label_text_size = 36
@@ -261,7 +261,7 @@ define gui.notify_ypos = 68
 define gui.choice_spacing = 33
 
 ## Buttons in the navigation section of the main and game menus.
-define gui.navigation_spacing = 6
+define gui.navigation_spacing = 20
 
 ## Controls the amount of spacing between preferences.
 define gui.pref_spacing = 15
@@ -417,7 +417,7 @@ define gui.language = "unicode"
 ################################################################################
 ## Mobile devices
 ################################################################################
-
+'''
 init python:
 
     ## This increases the size of the quick buttons to make them easier to touch
@@ -479,3 +479,4 @@ init python:
 
         gui.nvl_button_width = 1860
         gui.nvl_button_xpos = 30
+'''
