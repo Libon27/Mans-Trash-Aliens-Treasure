@@ -125,6 +125,14 @@ init python:
         
         # ~Check if there's at least one of the item to use, meow!~
         if inv_item.amount > 0:
+
+            # --- CLOSE THE INVENTORY UI FIRST ---
+            renpy.hide_screen("Screen_Inventory")       # ~Hide the inventory screen, meow!~
+            renpy.hide_screen("Screen_CategoryMenu")    # ~Hide the category menu if it's open, nya!~
+            renpy.hide_screen("Screen_InventoryButton") # ~Hides the inventory button
+            store.inventory_open = False                # ~Mark the inventory as closed, meow!~
+            store.Itemhov = None                        # ~Clear the hovered item, nya!~
+
             # ~Reduce the amount by 1 because we're using it, nya!~
             inv_item.amount -= 1  
             # ~Notify the player that the item was used, yay!~
@@ -136,6 +144,18 @@ init python:
                 Inventory.remove_item(inv_item.item)  
                 # ~Notify the player that the item was removed, bye bye item!~
                 renpy.notify(inv_item.item.name + " removed from inventory.")  
+
+            # Convert the item name to a label format (lowercase, replace spaces with underscores)
+            # E.g., "Manga" -> "manga", "Cloth Hat" -> "cloth_hat"
+            target_label = inv_item.item.name.lower().replace(" ", "_")
+            
+            # Check if the label exists in your script to prevent crashes
+            if renpy.has_label(target_label):
+                # Call the label
+                renpy.call(target_label)
+            else:
+                # Optional: What happens if you try to use an item without a specific label
+                renpy.notify("Nothing special happens.")
         
         else:
             # ~If there's none left, let the player know, nya!~
@@ -164,10 +184,11 @@ style framed_button:
 
 # ~Screen for showing the inventory button, click here to open the inventory, nya~
 screen Screen_InventoryButton:
+    modal True
     # ~Create a frame to hold the button, centered on the screen, meow!~
     frame:
         # ~Align the frame to the center of the screen horizontally and vertically, nya~
-        align (0.5, 0.5)
+        align (0.5, 0.3)
         
         # ~Set the background of the frame to a dark gray color with padding, to make it stand out, meow!~
         background Frame(Solid("#222222"), 10, 10)
@@ -178,6 +199,16 @@ screen Screen_InventoryButton:
                     Hide("Screen_InventoryButton"),  # ~Hide this button once the inventory is open, meow!~
                     SetVariable("inventory_open", True)]  # ~Set the inventory_open variable to True, so we know it's open, nya~
             style "framed_button"  # ~Use the cute button style we defined earlier, nya!~
+    # Another menu
+    frame:
+        align (0.5, 0.4)
+        background Frame(Solid("#222222"), 10, 10)
+            
+        # ~Add the new "Search Again" button, nya~
+        textbutton "Search Again":
+            # ~Hide this screen and jump to your chosen label!~
+            action [Hide("Screen_InventoryButton"), Jump("trash_menu")]
+            style "framed_button"
 
 
 # ~Screen for the inventory, where you can see all your items, nya~
@@ -358,32 +389,7 @@ screen Screen_CategoryMenu:
 label start:
 
     call prologue
+    call chapter1
 
-    # ~Add a Manga item to the inventory, because reading is fun, nya!~
-    $ Inventory.add_item(Item('Manga', 'Being well-read can be so easy.', 'images/Items/item_manga.png'), 5)
-    
-    # ~Add a Cloth Hat to the inventory, perfect for an adventurer's outfit, nya!~
-    $ Inventory.add_item(Item('Cloth Hat', 'A simple cloth hat.', 'images/Items/item_cloth_hat.png', category="outfits"), 7)
-    
-    # ~Add a Potion to the inventory, for instant healing, meow!~
-    $ Inventory.add_item(Item('Potion', 'Heals you instantly.', 'images/Items/item_potion.png'), 6)
-    
-    # ~Add Cloth Armor to the inventory, light but protective, nya!~
-    $ Inventory.add_item(Item('Cloth Armor', 'A light cloth armor.', 'images/Items/item_cloth_armor.png', category="outfits"), 9)
-    
-    # ~Add some durable Cloth Boots to the inventory, meow!~
-    $ Inventory.add_item(Item('Cloth Boots', 'Durable cloth boots.', 'images/Items/item_cloth_boots.png', category="outfits"), 12)
 
-    # ~Using a Python block to add 50 unique Potions to the inventory, yay for variety, nya!~
-    python:
-        for i in range(50):
-            Inventory.add_item(Item(f'Potion {i}', f'Heals you instantly. Potion {i}', 'images/Items/item_potion.png'), 1)
-
-    # ~Show the inventory button on the screen, so the player can open it anytime, meow!~
-    show screen Screen_InventoryButton
-
-    # ~Display a simple message to indicate the start of the inventory, nya!~
-    "Inventory"
-    
-    # ~End the start label and return to the main menu, nya!~
-    return
+return

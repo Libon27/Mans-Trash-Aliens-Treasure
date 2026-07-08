@@ -12,7 +12,8 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("RenPy And Python Multipage Inventory System")
+define config.developer = True
+define config.name = _("Man's Trash Alien's Treasure")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set

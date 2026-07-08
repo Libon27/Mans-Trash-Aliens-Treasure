@@ -1,6 +1,6 @@
 #define config.voice_filename_format = "audio/speech/ch1/{filename}.ogg"
 define s = Character(_("Sean"), color="#f09936")
-define a = Character(_("Alien"), color="#35554b")
+define a = Character(_("Alien"), color="#458570")
 define b = Character(_("Baba Yaga"), color="#db1f1f")
 define e = Character(_("Eileen"))
 
@@ -43,7 +43,7 @@ label prologue:
     s "I still have a chance to recover the brain cells I lost during my education."
 
     scene babayaga
-    play music "progressivetape-left-foot-blues.mp3"
+    play music "bg blues.mp3"
     pause 2.0
     b "Hmmm.... I sense a {glitch=1.1}{color=#0f0}{b}Troubled{/b}{/color}{/glitch} Young man."
     s "What?"
@@ -76,7 +76,10 @@ label prologue:
 
     s "What is THAT?"
     play sound plankton
-    play music "halloween-twist.mp3"
+    play music "bg twist.mp3"
+
+    show BlackScreen
+    s "Is that... {bt=2}an ALIEN{/bt} {bt=4}riding a{/bt} {bt=6}cow??!{/bt}"
 
 
 return
