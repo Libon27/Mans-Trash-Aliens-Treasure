@@ -9,8 +9,8 @@ image static = Movie(play="images/static.webm", size=(1920,1080), loop=False)
 label prologue:
     
     window hide
-    #play music "bg ambient suspense.ogg"
-    #scene 1farmers with fade
+    hide screen mood_counter
+    
     scene graduation1 with pushleft
     play sound woow
     s "Just like everyone else. I finally graduated college with lots of hopes and dreams."
@@ -73,13 +73,186 @@ label prologue:
     s "Until..."
 
     play sound horror
+    scene alienarrival
+    pause 1.5
 
-    s "What is THAT?"
+    s "What is {atl=0.3,drop_text~#~ 1.5, bounce_text~10}THAT?{/atl}"
     play sound plankton
     play music "bg twist.mp3"
 
-    show BlackScreen
     s "Is that... {bt=2}an ALIEN{/bt} {bt=4}riding a{/bt} {bt=6}cow??!{/bt}"
+    play sound what
+    s "And... it's abducting a UFO... WHAAAT??!!"
+    scene white
+    play sound flashbang
+    pause 2.0
 
+
+######################################################
+
+    show alien neutral
+    with dissolve
+
+    a "...Atmosphere breathable."
+
+    a "Gravity acceptable."
+
+    a "...Civilisation detected."
+
+    scene black with fade
+    show alien neutral
+    with dissolve
+
+    stop music fadeout 2.0
+    a "Wake up, Human."
+    a "Wake up!"
+
+    show alien neutral
+    with dissolve
+
+    scene site1 with fade
+    show alien neutral
+    a "Remarkable."
+    a "The dominant species has displayed its greatest cultural achievements."
+    play music "bg waltz.mp3"
+
+    hide alien
+    show sean base
+    play sound what_the_hell
+    s "(WAT DA HAIL??!)"
+
+    hide sean
+    show alien neutral
+    a "Only a highly advanced civilization would gather its most valuable artifacts into one sacred location."
+
+    hide alien
+    show sean base
+    s "You're looking at a garbage dump."
+
+    hide sean
+    show alien neutral
+    a "Your language appears primitive."
+
+    hide alien
+    show sean base
+    s "No, seriously. People throw this stuff away."
+
+    hide sean
+    show alien neutral
+    a "You are attempting to deceive an extraterrestrial intelligence."
+    a "Bold."
+
+    play sound guncharge
+    "The alien raises an impossibly sleek energy pistol."
+
+    show alien angry
+    play music "bg twist.mp3"
+    a "Silence."
+
+    a "You have already been identified as the local curator."
+
+    hide alien
+    show sean base
+    s "The local... what?"
+
+    hide sean
+    show alien neutral
+    a "Curator."
+    a "Keeper of Humanity's Treasures."
+
+    hide alien
+    show sean base
+    s "I literally work at the dump."
+
+    hide sean
+    show alien angry
+    a "An admirable disguise."
+    a "But that won't work on me."
+
+    show alien happy
+    play sound guncharge
+    pause 2.0
+
+    hide alien
+    show sean base
+    s "{atl=0.3,drop_text~#~ 1.5, bounce_text~10}Sorry! Sorry!{/atl}"
+
+    hide sean
+    show alien base
+    a "My mission is simple."
+    a "You will retrieve the finest relics your civilization has to offer."
+    a "You will present them to me for evaluation."
+
+    play sound gun
+    show alien angry
+    a "Failure will result in your immediate vaporization."
+
+    hide alien
+    show sean base
+    s "That seems a little extreme."
+
+    hide sean
+    show alien neutral
+    a "I possess seventeen settings."
+    a "The current one is 'slightly annoyed.'"
+    stop music
+    play sound alert
+
+    hide alien
+    show sean base
+    s "...There are seventeen?"
+
+    hide sean
+    show alien neutral
+    a "Correct."
+
+    a "The final setting leaves very little to identify."
+
+    hide alien
+    show sean base
+    s "..."
+
+    play music "bg waltz.mp3"
+    s "So... if I bring you random junk..."
+
+    hide sean
+    show alien angry
+    a "Treasures."
+
+    hide alien
+    show sean base
+    s "...Treasures..."
+
+    s "...you won't shoot me?"
+
+    hide sean
+    show alien confused
+    a "Assuming your offerings satisfy my refined standards."
+
+    hide alien
+    show sean base
+    s "And if they don't?"
+
+    play sound guncharge
+    hide sean
+    show alien happy
+    a "Then I become considerably less diplomatic."
+
+    hide alien
+    show sean base
+    play sound woow
+    s "Fantastic."
+
+    hide sean
+    show alien neutral
+    a "You may begin immediately."
+    a "Do not insult me with common refuse."
+    a "Go."
+
+    menu:
+        "Fight the Alien":
+            jump death
+        "Obey without trying":
+            jump chapter1
 
 return

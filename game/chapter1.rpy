@@ -20,16 +20,20 @@ screen trash_search_screen():
 
 
 label chapter1:
-
+    $ search_count = 0
     show screen mood_counter
     if alien_mood <= 0:
         jump death
+    
+    if alien_mood >= 6:
+        jump ending
 
     scene site1
     play music "bg scomedy.mp3"
     
+    show alien neutral
     a "Human, go thou forth and bring me treasures!"
-
+    hide alien
 label trash_menu:
     menu:
         "Scrap Yard":
@@ -47,7 +51,7 @@ label scrap_yard:
         ("a Dead Car Battery", Item('Dead Car Battery', 'A heavy plastic block filled with sloshing, expired acid. Lifting it is a workout; dropping it on your toe is a tragedy.', 'images/Items/dead_car_battery.png', category="Scrap Yard"), 1, 'images/Items/dead_car_battery.png'),
         ("a Frayed Jumper Cables", Item('Frayed Jumper Cables', 'Thick rubber hoses terminating in rusty, jagged alligator clips. The dangerously exposed copper wiring looks incredibly sketchy.', 'images/Items/frayed_jumper_cables.png', category="Scrap Yard"), 1, 'images/Items/frayed_jumper_cables.png'),
         ("a Bent License Plate", Item('Bent License Plate', 'A warped piece of stamped aluminum reading "XYZ-123". The registration sticker expired a decade ago.', 'images/Items/bent_license_plate.png', category="Scrap Yard"), 1, 'images/Items/bent_license_plate.png'),
-        ("an Engine Piston", Item('Engine Piston', 'A solid, greasy chunk of machined steel. Heavy enough to anchor a small boat or shatter a windshield.', 'images/Items/bent_license_plate.png', category="Scrap Yard"), 1, 'images/Items/bent_license_plate.png'),
+        ("an Engine Piston", Item('Engine Piston', 'A solid, greasy chunk of machined steel. Heavy enough to anchor a small boat or shatter a windshield.', 'images/Items/engine_piston.png', category="Scrap Yard"), 1, 'images/Items/engine_piston.png'),
         ("a Broken Radiator", Item('Broken Radiator', 'A cumbersome grid of bent metal fins and cracked plastic casing. It leaks a mysterious, sticky greenish fluid onto your shoes.', 'images/Items/broken_radiator.png', category="Scrap Yard"), 1, 'images/Items/broken_radiator.png'),
         ("a Bent Bicycle Wheel", Item('Bent Bicycle Wheel', 'A wire-spoked wheel warped into a tragic taco shape. It spins with a sad, wobbly squeak.', 'images/Items/bent_bicycle_wheel.png', category="Scrap Yard"), 1, 'images/Items/bent_bicycle_wheel.png'),
         ("a Snapped Fan Belt", Item('Snapped Fan Belt', 'A rigid loop of cracked, black rubber. Smells faintly of burnt ozone and highway breakdowns.', 'images/Items/snapped_fan_belt.png', category="Scrap Yard"), 1, 'images/Items/snapped_fan_belt.png'),
@@ -125,7 +129,7 @@ label landfill:
         ("a Torn Umbrella", Item('Torn Umbrella', 'A skeletal mechanism of bent metal spokes and flappy, torn nylon. Barely qualifies as a rain shield anymore.', 'images/Items/torn_umbrella.png', category="Landfill"), 1, 'images/Items/torn_umbrella.png'),
         ("a Single Croc Shoe", Item('Single Croc Shoe', 'A brightly colored, foam-clog shoe riddled with holes. The absolute epitome of controversial human footwear.', 'images/Items/single_croc_shoe.png', category="Landfill"), 1, 'images/Items/single_croc_shoe.png'),
         ("a Broken Toaster", Item('Broken Toaster', 'A hollow, crumb-filled appliance with a jammed lever. Smells permanently of burnt bread and fire hazards.', 'images/Items/broken_toaster.png', category="Landfill"), 1, 'images/Items/broken_toaster.png'),
-        ("a Disembodied Action Figure Head", Item('Disembodied Head', 'A tiny, plastic human head with pristine hair and a terrifyingly blank, unblinking smile. It feels like it\'s watching you.', 'images/Items/disembodied_head.png', category="Landfill"), 1, 'images/Items/disembodied_head.png')
+        ("a Disembodied Doll Head", Item('Disembodied Head', 'A tiny, plastic human head with hollow eyes and a terrifyingly blank, unblinking smile. It feels like it\'s watching you.', 'images/Items/disembodied_head.png', category="Landfill"), 1, 'images/Items/disembodied_head.png')
     ]
 
     call screen trash_search_screen
