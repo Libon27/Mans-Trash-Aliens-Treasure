@@ -38,7 +38,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "RenPyAndPythonMultipageInventorySystem"
+define build.name = "TrashAlien"
 
 
 ## Sounds and music ############################################################

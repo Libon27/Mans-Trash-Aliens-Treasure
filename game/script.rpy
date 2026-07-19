@@ -388,8 +388,8 @@ screen Screen_CategoryMenu:
 # ~Start label, adding some items to the inventory to play with, yay~
 label start:
 
-    call prologue
-    call chapter1
+    call prologue from _call_prologue
+    call chapter1 from _call_chapter1
 
 
 return
